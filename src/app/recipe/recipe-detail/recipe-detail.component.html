@@ -1,23 +1,25 @@
-<div class="recipe-detail">
-  <h2>{{ recipe.nombre }}</h2>
-  <img
-    class="recipe-detail-img"
-    [src]="recipe.imagen"
-    alt="{{ recipe.imagen }}"
-  />
-  <p><strong>Porciones:</strong> {{ recipe.porciones }}</p>
-  <p><strong>Tiempo:</strong> {{ recipe.tiempo_minutos }} min</p>
-  <h3>Ingredientes</h3>
-  <app-ingredient-list
-    [ingredients]="recipe.ingredientes"
-  ></app-ingredient-list>
-
-  <h3>Pasos</h3>
-  <ol>
-    @for(step of recipe.pasos; track step){
-    <li>
-      {{ step }}
-    </li>
-    }
-  </ol>
+<div class="container mt-5">
+  <div class="card">
+    <img [src]="recipe?.imagen" class="card-img-top" [alt]="recipe?.nombre" style="height:250px;object-fit:cover;">
+    <div class="card-body">
+      <h1 class="card-title">{{ recipe?.nombre }}</h1>
+      <p class="card-text">{{ recipe?.descripcion }}</p>
+      <span class="badge bg-info text-dark me-1" *ngFor="let tag of recipe?.etiquetas">{{ tag }}</span>
+      <hr>
+      <p><strong>Porciones:</strong> {{ recipe?.porciones }}</p>
+      <p><strong>Tiempo:</strong> {{ recipe?.tiempo_minutos }} min | <strong>Dificultad:</strong> {{ recipe?.dificultad }}</p>
+      <h3 class="mt-4">Ingredientes</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ing of recipe?.ingredientes">
+          {{ ing.cantidad + ' ' + ing.unidad }} de {{ ing.nombre }}
+        </li>
+      </ul>
+      <h3 class="mt-4">Instrucciones</h3>
+      <ol>
+        <li *ngFor="let paso of recipe?.pasos">{{ paso }}</li>
+      </ol>
+      <button class="btn btn-secondary mt-4" (click)="goBack()">Volver al Listado</button>
+    </div>
+  </div>
 </div>
+

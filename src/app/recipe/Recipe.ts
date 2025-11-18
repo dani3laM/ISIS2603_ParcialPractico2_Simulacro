@@ -11,6 +11,9 @@ export class Recipe {
   imagen: string;
   etiquetas: string[];
   ingredientes: Ingredient[];
+description: any;
+name: any;
+descripcion: any;
 
   constructor(
     id: number,
